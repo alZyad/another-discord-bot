@@ -8,6 +8,8 @@ const TOKEN = process.env.TOKEN ?? "";
 const CLIENT_ID = process.env.CLIENT_ID ?? "";
 
 const rest = new REST({ version: "10" }).setToken(TOKEN);
+export const mainChannelId = "1142177161294397552";
+export const sheikId = "495942140124332033";
 
 try {
   console.log("Started refreshing application (/) commands.");
@@ -22,12 +24,10 @@ try {
 } catch (error) {
   console.error({ error });
 }
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+export const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.on("ready", () => {
-  client.user
-    ? console.log(`Logged in as ${client.user.tag}!`)
-    : console.log("Logged in anonymously!");
+  client.user ? console.log(`Logged in as ${client.user.tag}!`) : console.log("Logged in anonymously!");
 });
 
 client.on("interactionCreate", async (interaction) => {
