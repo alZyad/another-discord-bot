@@ -4,7 +4,7 @@ import { TextChannel } from "discord.js";
 
 export const startReminderCron = (interaction: any) => {
   const job = new CronJob(
-    "* * 18 * * *",
+    "0 0 18 * * *",
     async function () {
       console.log("Brush reminder sent");
       const sheik = client.users.cache.find((user) => user.id === sheikId);
