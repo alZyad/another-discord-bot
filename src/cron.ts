@@ -1,14 +1,16 @@
 import { CronJob } from "cron";
-import { client, mainChannelId, sheikId } from "./start-bot.js";
+import { client, mainChannelId } from "./start-bot.js";
 import { TextChannel } from "discord.js";
 
-export const startReminderCron = (interaction: any) => {
+export const startReminderCron = (interaction: any, selectedUsers: Set<string>) => {
   const job = new CronJob(
     "0 0 18 * * *",
     async function () {
       console.log("Brush reminder sent");
-      const sheik = client.users.cache.find((user) => user.id === sheikId);
-      (client.channels.cache.get(mainChannelId) as TextChannel).send(`Hello ${sheik}, have you brushed your teeth ?`);
+      selectedUsers.forEach((userId) => {
+        const user = client.users.cache.find((user) => user.id === userId);
+        (client.channels.cache.get(mainChannelId) as TextChannel).send(`Hello ${user}, have you brushed your teeth ?`);
+      });
     },
     null, // cleanup
     true, // auto start

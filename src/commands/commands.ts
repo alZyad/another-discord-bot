@@ -1,6 +1,6 @@
 import { TextChannel } from "discord.js";
 import { client, mainChannelId } from "../start-bot.js";
-import { brushReminder } from "./brushReminder.js";
+import { brushReminder, selectUsers } from "./brushReminder.js";
 
 export interface apiCommand {
   name: string;
@@ -36,6 +36,10 @@ export const commands: commandList = {
   "brush-reminder": {
     api: { name: "brush-reminder", description: "start reminder to brush your teeth." },
     execute: brushReminder,
+  },
+  "select-users": {
+    api: { name: "select-users", description: "Select users for brush reminder." },
+    execute: selectUsers,
   },
 };
 
